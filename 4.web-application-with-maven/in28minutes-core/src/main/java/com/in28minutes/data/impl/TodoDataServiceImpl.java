@@ -1,5 +1,7 @@
 package com.in28minutes.data.impl;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -10,8 +12,11 @@ import com.in28minutes.data.api.TodoDataService;
 import com.in28minutes.domain.TodoItem;
 import com.in28minutes.domain.TodoItemList;
 
+
 @Repository
 public class TodoDataServiceImpl implements TodoDataService {
+	
+	
 
 	@PersistenceContext
 	private EntityManager entityManager;
