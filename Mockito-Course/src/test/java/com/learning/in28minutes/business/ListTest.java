@@ -1,13 +1,17 @@
 package com.learning.in28minutes.business;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import static org.mockito.BDDMockito.*;
 
 import java.util.List;
 
 import org.junit.Test;
 
 public class ListTest {
+
+	private String string;
 
 	@Test
 	public void testUsingMockList() {
@@ -44,6 +48,22 @@ public class ListTest {
 		when(listMock.get(anyInt())).thenThrow(new RuntimeException("Some Exception"));
 
 		assertEquals("Sagar", listMock.get(2));
+
+	}
+
+	@Test
+	public void testUsingListGetUsingBDD() {
+
+//		Given
+		List<String> listMock = mock(List.class);
+		// Argument Matcher
+		given(listMock.get(anyInt())).willReturn("Sagar");
+
+//		When
+		string = listMock.get(2);
+
+//		Then
+		assertThat(string, is("Sagar"));
 
 	}
 
