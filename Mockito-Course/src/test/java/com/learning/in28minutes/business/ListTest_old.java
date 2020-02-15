@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class ListTest {
+public class ListTest_old {
 
 	private String string;
 

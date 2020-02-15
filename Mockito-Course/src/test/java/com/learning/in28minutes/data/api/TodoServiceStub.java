@@ -8,10 +8,10 @@ public class TodoServiceStub implements TodoService {
 	@Override
 	public List<String> retriveTodos(String user) {
 
-		if (user == "Dummy") {
-			return Arrays.asList("");
+		if (user == "Sagar") {
+			return Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");			
 		} else {
-			return Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");
+			return Arrays.asList("");
 		}
 	}
 

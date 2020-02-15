@@ -19,7 +19,7 @@ import com.learning.in28minutes.data.api.TodoService;
 //Using Annotations
 
 @RunWith(MockitoJUnitRunner.class)
-public class TodoBusinessImplTestUingMock {
+public class TodoBusinessImplTestUingMock_Old {
 
 	@Mock
 	TodoService todoServiceMock;
