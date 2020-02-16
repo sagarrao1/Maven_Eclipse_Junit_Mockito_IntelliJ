@@ -1,5 +1,7 @@
 package com.learning.in28minutes.business;
 
+// With @MOck, @InjectMock Annotations
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -9,19 +11,31 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.learning.in28minutes.data.api.TodoService;
 
-public class TodoBusinessImplTestUingInjectMockTest {
+
+@RunWith(MockitoJUnitRunner.class)
+public class TodoBusinessImplTestUingInjectMockTest_Old {
+
+	@Mock
+	TodoService todoServiceMock;
+	
+	@InjectMocks
+	TodoBusinessImpl businessImpl;
 
 	@Test
 	public void testRetriveTodoRelatedToSpring_usingMock() {
 
-		TodoService todoServiceMock = mock(TodoService.class);
+//		TodoService todoServiceMock = mock(TodoService.class);
 		List<String> value = Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");
 		when(todoServiceMock.retriveTodos("Sagar")).thenReturn(value);
 
-		TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
+//		TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
 		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");
 		assertEquals(2, retriveTodoFiltered.size());
 
@@ -30,9 +44,8 @@ public class TodoBusinessImplTestUingInjectMockTest {
 	@Test
 	public void testRetriveTodoRelatedToSpring_usingEmptyMock() {
 
-		TodoService todoServiceMock = mock(TodoService.class);
-
-		TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
+//		TodoService todoServiceMock = mock(TodoService.class);
+//		TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
 		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Dummy");
 		assertEquals(0, retriveTodoFiltered.size());
 
@@ -41,10 +54,10 @@ public class TodoBusinessImplTestUingInjectMockTest {
 	@Test
 	public void testRetriveTodoRelatedToSpring_usingBDDMock() {
 //		Given
-		TodoService todoServiceMock = mock(TodoService.class);
+
 		List<String> value = Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");
 		given(todoServiceMock.retriveTodos("Sagar")).willReturn(value);
-		TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
+
 
 //		When
 		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");

@@ -17,29 +17,26 @@ import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.learning.in28minutes.data.api.TodoService;
 
+@RunWith(MockitoJUnitRunner.class)
+public class TodoBusinessImplTestUsingInjectMocksTest {
 
-public class TodoBusinessImplMockTest {
-
+	@Mock
 	TodoService todoServiceMock;
+	
+	@InjectMocks
 	TodoBusinessImpl businessImpl;
 	
-	@Before
-	public void setup() {
-		todoServiceMock	 = mock(TodoService.class);
-		businessImpl = new TodoBusinessImpl(todoServiceMock);
-		System.out.println("before");
-	}
-	
-	@After
-	public void teardown() {
-		todoServiceMock	 = null;
-		businessImpl = null;
-		System.out.println("after");
-	}
+	@Captor
+	ArgumentCaptor<String> stringArgumentCaptor;
 	
 	@Test
 	public void testRetriveTodoRelatedToSpring_usingMock() {
@@ -101,13 +98,13 @@ public class TodoBusinessImplMockTest {
 		verify(todoServiceMock,atLeast(1)).deleteTodo("Learn Java");
 	}
 
-	//Capute arguments that you pass to method
+	//Capture arguments that you pass to method
 	//using ArgumentCaptor class
 	@Test
 	public void testdeleteTodoNotRelatedToSpring_usingBDD_argumentCapture() {
 		
 		//Declare argument Capture
-		ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
+		//ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
 		
 		//Define it on method
 		//Capture or assert or verify that argument 
