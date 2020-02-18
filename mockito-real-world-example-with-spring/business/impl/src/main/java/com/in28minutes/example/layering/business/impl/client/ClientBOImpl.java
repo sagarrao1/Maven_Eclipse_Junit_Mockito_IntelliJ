@@ -34,6 +34,7 @@ public class ClientBOImpl implements ClientBO {
 
 		List<Product> existingProducts = productDO.getAllProducts(clientId);
 
+		System.out.println("existingProducts : "+existingProducts.size());
 		return new AmountImpl(calculateClientProductSum(existingProducts), Currency.EURO);
 	}
 
