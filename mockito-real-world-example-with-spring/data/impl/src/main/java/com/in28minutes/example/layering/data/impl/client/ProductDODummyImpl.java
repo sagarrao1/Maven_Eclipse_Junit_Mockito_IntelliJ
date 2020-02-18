@@ -21,8 +21,7 @@ public class ProductDODummyImpl implements ProductDO {
 	}
 
 	private Product createProductWithAmount(String amount) {
-		return new ProductImpl(100, "Product 15", ProductType.BANK_GUARANTEE,
-				new AmountImpl(new BigDecimal(amount), Currency.EURO));
+		return new ProductImpl(100, "Product 15", ProductType.BANK_GUARANTEE, new AmountImpl(new BigDecimal(amount), Currency.EURO));
 	}
 
 	@Override

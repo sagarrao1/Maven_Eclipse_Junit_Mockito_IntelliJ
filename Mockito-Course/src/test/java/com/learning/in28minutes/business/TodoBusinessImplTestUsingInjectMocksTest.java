@@ -16,19 +16,28 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoRule;
 
 import com.learning.in28minutes.data.api.TodoService;
 
-@RunWith(MockitoJUnitRunner.class)
+// With Runners , you can only use one runner at at time, you can't use other runner like springrunner
+// other option is to use rule istead of runners.
+
+//@RunWith(MockitoJUnitRunner.class)
 public class TodoBusinessImplTestUsingInjectMocksTest {
 
+	@Rule
+	public MockitoRule mockitoRule = MockitoJUnit.rule(); 
+	
 	@Mock
 	TodoService todoServiceMock;
 	
