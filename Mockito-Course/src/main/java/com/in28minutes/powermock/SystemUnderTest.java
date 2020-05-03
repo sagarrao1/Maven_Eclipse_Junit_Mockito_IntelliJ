@@ -31,4 +31,13 @@ public class SystemUnderTest {
 			sum += stat;
 		return sum;
 	}
+
+	private long privateMethodUnderTest2() {
+		List<Integer> stats = dependency.retrieveAllStats();
+		long sum = 0;
+		for (int stat : stats)
+			sum += stat;
+		return sum;
+	}
+
 }
