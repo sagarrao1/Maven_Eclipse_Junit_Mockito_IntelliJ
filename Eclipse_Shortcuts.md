@@ -133,6 +133,20 @@ Plugins :
 		
 Plurasight
 
+	CTRL +3 for quick access 
+	
+	Set show file in finder to open file explorer of project from eclipse
+	 go to external tools configure  > new launch program >program 
+	   location : ${env_var:SystemRoot}\explorer.exe
+	  arguments: /select,${resource_loc}
+	  build tab > uncheck build
+	 common tab  > check  external tools
+	
+	To set shortcut for above , select keys in find action > enter run external tools > enter numbe 2 > when :windows
+	
+	Window> editors > Close editors automatically> no.of editors open :8
+	
+
 
 
 latest till above
