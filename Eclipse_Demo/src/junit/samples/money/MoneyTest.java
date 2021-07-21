@@ -23,6 +23,7 @@ public class MoneyTest extends TestCase {
 
 		fMB1 = MoneyBag.create(f12CHF, f7USD);
 		fMB2 = MoneyBag.create(f14CHF, f21USD);
+		
 	}
 
 	public void testBagMultiply() {

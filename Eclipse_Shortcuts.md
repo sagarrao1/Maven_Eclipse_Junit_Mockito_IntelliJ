@@ -146,7 +146,10 @@ Plurasight
 	
 	Window> editors > Close editors automatically> no.of editors open :8
 	
-
+	CTRL + SFT + up/down arrow to directly for each method or class
+	CTRL + ALT + up/down arrow to copy /duplicate line
+	CTRL + O to quick open outline
+	CTRL + E quick switch editor
 
 
 latest till above
