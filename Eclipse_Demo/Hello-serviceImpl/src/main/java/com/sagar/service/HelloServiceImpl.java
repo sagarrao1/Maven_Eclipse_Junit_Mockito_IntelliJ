@@ -1,6 +1,8 @@
 package com.sagar.service;
 
-public class HelloServiceImpl {
+import com.service.HelloService;
+
+public class HelloServiceImpl implements HelloService {
 	public String getMessage() {
 		return "Hello world!";
 	}
