@@ -23,6 +23,10 @@ public class User {
 		this.name = name;
 		this.age = age;
 	}
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", age=" + age + "]";
+	}
 	
 	
 }
