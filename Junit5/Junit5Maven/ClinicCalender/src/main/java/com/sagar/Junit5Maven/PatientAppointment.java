@@ -8,8 +8,9 @@ public class PatientAppointment {
    private String patientLastName;
    private LocalDateTime appointmentDateTime;
    private Doctor doctor;
+   private Double bmi;
 
-   public PatientAppointment(String patientFirstName, String patientLastName, LocalDateTime appointmentDateTime, Doctor doctor) {
+   public PatientAppointment(String patientLastName,String patientFirstName,  LocalDateTime appointmentDateTime, Doctor doctor) {
       this.patientFirstName = patientFirstName;
       this.patientLastName = patientLastName;
       this.appointmentDateTime = appointmentDateTime;
@@ -31,4 +32,28 @@ public class PatientAppointment {
    public Doctor getDoctor() {
       return doctor;
    }
+
+public Double getBmi() {
+	return bmi;
+}
+
+public void setBmi(Double bmi) {
+	this.bmi = bmi;
+}
+
+public void setPatientFirstName(String patientFirstName) {
+	this.patientFirstName = patientFirstName;
+}
+
+public void setPatientLastName(String patientLastName) {
+	this.patientLastName = patientLastName;
+}
+
+public void setAppointmentDateTime(LocalDateTime appointmentDateTime) {
+	this.appointmentDateTime = appointmentDateTime;
+}
+
+public void setDoctor(Doctor doctor) {
+	this.doctor = doctor;
+}
 }
