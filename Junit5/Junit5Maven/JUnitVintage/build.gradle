@@ -1,0 +1,25 @@
+plugins {
+	id 'java'
+}
+
+group 'com.pluralsight'
+version '1.0-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation(platform('org.junit:junit-bom:5.7.2'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
+
+	testImplementation("junit:junit:4.13.2")
+	testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
+}
+
+test {
+	useJUnitPlatform{
+		/*not to run junit 5 test cases enable below*/
+		/*excludeEngines 'junit-jupiter'*/
+	}
+}
