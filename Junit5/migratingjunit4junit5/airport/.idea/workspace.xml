@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8a7dafad-2b7f-481f-81b3-e495eb18a79e" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="141" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1dMEAXa3c3IAkLz2k4cZXL1ew48" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../After/airport" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.pluralsight.migratingjunit4junit5.airport.database" />
+      <recent name="com.pluralsight.migratingjunit4junit5.airport.airconditioning" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Work\Pluralsight\Migrating from JUnit 4 to JUnit 5\Module 3 - code\Before\airport\src\main\java\com\pluralsight\migratingjunit4junit5\airport\database" />
+      <recent name="C:\Work\Pluralsight\Migrating from JUnit 4 to JUnit 5\Module 3 - code\Before\airport\src\main\java\com\pluralsight\migratingjunit4junit5\airport\thermometer" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.com.pluralsight.migratingjunit4junit5.airport in migratingjunit4junit5">
+    <configuration name="DatabaseAccessTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="migratingjunit4junit5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.pluralsight.migratingjunit4junit5.airport.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.pluralsight.migratingjunit4junit5.airport.database" />
+      <option name="MAIN_CLASS_NAME" value="com.pluralsight.migratingjunit4junit5.airport.database.DatabaseAccessTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseAccessTest.testUserFailedLogin2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="migratingjunit4junit5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.pluralsight.migratingjunit4junit5.airport.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.pluralsight.migratingjunit4junit5.airport.database" />
+      <option name="MAIN_CLASS_NAME" value="com.pluralsight.migratingjunit4junit5.airport.database.DatabaseAccessTest" />
+      <option name="METHOD_NAME" value="testUserFailedLogin2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FlightTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="migratingjunit4junit5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.pluralsight.migratingjunit4junit5.airport.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.pluralsight.migratingjunit4junit5.airport" />
+      <option name="MAIN_CLASS_NAME" value="com.pluralsight.migratingjunit4junit5.airport.FlightTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PassengerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="migratingjunit4junit5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.pluralsight.migratingjunit4junit5.airport.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.pluralsight.migratingjunit4junit5.airport" />
+      <option name="MAIN_CLASS_NAME" value="com.pluralsight.migratingjunit4junit5.airport.PassengerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.pluralsight.migratingjunit4junit5.airport in migratingjunit4junit5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="migratingjunit4junit5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.pluralsight.migratingjunit4junit5.airport.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.pluralsight.migratingjunit4junit5.airport" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.com.pluralsight.migratingjunit4junit5.airport in migratingjunit4junit5" />
+        <item itemvalue="JUnit.FlightTest" />
+        <item itemvalue="JUnit.PassengerTest" />
+        <item itemvalue="JUnit.DatabaseAccessTest" />
+        <item itemvalue="JUnit.DatabaseAccessTest.testUserFailedLogin2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8a7dafad-2b7f-481f-81b3-e495eb18a79e" name="Default Changelist" comment="" />
+      <created>1592226418812</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592226418812</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/migratingjunit4junit5$DatabaseAccessTest_testUserFailedLogin2.ic" NAME="DatabaseAccessTest.testUserFailedLogin2 Coverage Results" MODIFIED="1592243523817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.pluralsight.migratingjunit4junit5.airport.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/migratingjunit4junit5$DatabaseAccessTest.ic" NAME="DatabaseAccessTest Coverage Results" MODIFIED="1592242711316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.pluralsight.migratingjunit4junit5.airport.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/migratingjunit4junit5$DatabaseAccessTest_testUserFailedLogin.ic" NAME="DatabaseAccessTest.testUserFailedLogin Coverage Results" MODIFIED="1592243276217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.pluralsight.migratingjunit4junit5.airport.database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/migratingjunit4junit5$com_pluralsight_migratingjunit4junit5_airport_in_migratingjunit4junit5.ic" NAME="com.pluralsight.migratingjunit4junit5.airport in migratingjunit4junit5 Coverage Results" MODIFIED="1593448921188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.pluralsight.migratingjunit4junit5.airport.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/migratingjunit4junit5$FlightTest.ic" NAME="FlightTest Coverage Results" MODIFIED="1593448882746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.pluralsight.migratingjunit4junit5.airport.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/migratingjunit4junit5$PassengerTest.ic" NAME="PassengerTest Coverage Results" MODIFIED="1593448837892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.pluralsight.migratingjunit4junit5.airport.*</FILTER>
+    </SUITE>
+  </component>
+</project>
