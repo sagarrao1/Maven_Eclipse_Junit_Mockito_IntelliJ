@@ -1,0 +1,10 @@
+we can use command to execute from command prompt
+add console jar at project level
+
+java -jar junit-platform-console-standalone-1.8.0.jar -cp target/classes/;target/test-classes --scan-classpath
+
+
+same commanf with more details option
+
+java -jar junit-platform-console-standalone-1.8.0.jar -cp target/classes/;target/test-classes --scan-classpath --details summary
+

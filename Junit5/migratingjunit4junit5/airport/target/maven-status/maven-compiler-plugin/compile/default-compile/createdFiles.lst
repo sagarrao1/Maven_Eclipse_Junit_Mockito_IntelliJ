@@ -1,0 +1,5 @@
+com\pluralsight\migratingjunit4junit5\airport\Passenger.class
+com\pluralsight\migratingjunit4junit5\airport\database\Database.class
+com\pluralsight\migratingjunit4junit5\airport\database\Credentials.class
+com\pluralsight\migratingjunit4junit5\airport\DistancesManager.class
+com\pluralsight\migratingjunit4junit5\airport\Flight.class

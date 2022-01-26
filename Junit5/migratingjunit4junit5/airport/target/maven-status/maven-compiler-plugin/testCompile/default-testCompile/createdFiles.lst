@@ -1,0 +1,11 @@
+com\pluralsight\migratingjunit4junit5\airport\FlightBuilderUtil.class
+com\pluralsight\migratingjunit4junit5\airport\database\DatabaseAccessTest.class
+com\pluralsight\migratingjunit4junit5\airport\database\StatisticsTest.class
+com\pluralsight\migratingjunit4junit5\airport\PassengerTest.class
+com\pluralsight\migratingjunit4junit5\airport\PassengersPolicy.class
+com\pluralsight\migratingjunit4junit5\airport\FlightWithPassengersTest.class
+com\pluralsight\migratingjunit4junit5\airport\BonusPolicy.class
+com\pluralsight\migratingjunit4junit5\airport\producers\FlightProducer.class
+com\pluralsight\migratingjunit4junit5\airport\FlightTest.class
+com\pluralsight\migratingjunit4junit5\airport\annotations\FlightNumber.class
+com\pluralsight\migratingjunit4junit5\airport\CucumberTest.class

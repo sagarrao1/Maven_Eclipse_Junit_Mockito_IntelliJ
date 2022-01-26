@@ -1,0 +1,10 @@
+com\pluralsight\migratingjunit4junit5\assumptions\SUT.class
+com\pluralsight\migratingjunit4junit5\assumptions\environment\TestsEnvironment.class
+com\pluralsight\migratingjunit4junit5\Calculator.class
+com\pluralsight\migratingjunit4junit5\assumptions\environment\JavaSpecification.class
+com\pluralsight\migratingjunit4junit5\lifecycle\ResourceForAllTests.class
+com\pluralsight\migratingjunit4junit5\lifecycle\SUT.class
+com\pluralsight\migratingjunit4junit5\assumptions\environment\OperatingSystem.class
+com\pluralsight\migratingjunit4junit5\tags\Customer.class
+com\pluralsight\migratingjunit4junit5\assumptions\Job.class
+com\pluralsight\migratingjunit4junit5\tags\CustomersRepository.class
