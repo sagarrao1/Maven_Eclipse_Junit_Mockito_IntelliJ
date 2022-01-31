@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.sagar.SayHelloTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-31T04:06:00" hostname="DESKTOP-KOBU9QU" time="0.023">
+  <properties/>
+  <testcase name="testSayHello()" classname="com.sagar.SayHelloTest" time="0.023"/>
+  <system-out><![CDATA[Hello !
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
