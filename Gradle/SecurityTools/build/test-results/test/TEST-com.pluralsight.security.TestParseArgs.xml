@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.pluralsight.security.TestParseArgs" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-02-04T01:32:20" hostname="DESKTOP-KOBU9QU" time="0.001">
+  <properties/>
+  <testcase name="testDefaultValues" classname="com.pluralsight.security.TestParseArgs" time="0.0"/>
+  <testcase name="testAllCorrectParamsInOrder" classname="com.pluralsight.security.TestParseArgs" time="0.0"/>
+  <testcase name="testAllCorrectParamsRandomOrder" classname="com.pluralsight.security.TestParseArgs" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

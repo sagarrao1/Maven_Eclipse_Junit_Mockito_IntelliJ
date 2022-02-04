@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.pluralsight.security.TestCreateStreams" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-02-04T04:55:18" hostname="DESKTOP-KOBU9QU" time="0.019">
+  <properties/>
+  <testcase name="testWhenInputFileNameIsNull" classname="com.pluralsight.security.TestCreateStreams" time="0.004"/>
+  <testcase name="testWhenDestFileDoesNotExistOverwrite" classname="com.pluralsight.security.TestCreateStreams" time="0.003"/>
+  <testcase name="testWhenInputFileDoesExist" classname="com.pluralsight.security.TestCreateStreams" time="0.002"/>
+  <testcase name="testWhenInputFileDoesNotExist" classname="com.pluralsight.security.TestCreateStreams" time="0.002"/>
+  <testcase name="testWhenDestFileIsNull" classname="com.pluralsight.security.TestCreateStreams" time="0.001"/>
+  <testcase name="testWhenDestFileExistsNoOverwrite" classname="com.pluralsight.security.TestCreateStreams" time="0.002"/>
+  <testcase name="testWhenDestFileExistsOverwrite" classname="com.pluralsight.security.TestCreateStreams" time="0.002"/>
+  <testcase name="testWhenDestFileDoesNotExistNoOverwrite" classname="com.pluralsight.security.TestCreateStreams" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
