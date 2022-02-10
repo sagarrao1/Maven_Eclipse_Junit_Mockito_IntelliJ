@@ -1,0 +1,97 @@
+def projectVersion = "7.2"
+project.ext.projectVer = "6.4"
+
+// different ways of defining  task
+
+task hello {
+	doLast {
+		println 'Hello world'
+	}
+}
+
+project.task("Task1")
+
+task ("Task2")
+
+task "Task3"
+
+task Task4
+
+// task will have description
+
+Task4.description = "Task 4 description"
+
+// different ways of executing task
+
+Task4.doLast { println "This is Task 4"}
+
+Task3.doLast { println "This is Task 3"}
+
+task Task5 doLast { println 'This is task 5' }
+
+//we can append another actions to same task this is powerful //feature
+Task5.doLast { println "Another closre in Task 5"}
+
+//doing all things in one go
+
+task Task6 {
+   description = "Task6 description"
+//   dependsOn Task5
+   doLast {
+      println 'This is task6'
+	}
+   doFirst {
+	  println "task 6 - First "
+	}
+}
+
+
+Task6.doFirst {
+	println "Another First project version - $project.ext.projectVer"
+}
+
+Task6.dependsOn Task5
+Task6.dependsOn Task4
+Task5.dependsOn Task3
+
+
+task taskA doLast {println "task A"}
+task taskB doLast {println "task B"}
+
+taskB.shouldRunAfter taskA
+
+// it is like if we run taskB and taskA , it should run taskA first and taskB 2nd. gradle taskB taskA if // we run only taskB it will execute only taskB
+
+
+task taskC doLast {println "task C"}
+task taskD doLast {println "task D"}
+
+taskC.finalizedBy taskD
+
+//when we run taskC , it will run taskD as well with finalizedBy
+
+task copyImages (type: Copy){
+	exclude 'IMG_2529.JPG', 'IMG_2530.JPG'
+	from 'ImgSrc'
+	into 'ImgDst'
+}
+
+def contentSpec =copySpec{
+	//exclude 'IMG_2529.JPG', 'IMG_2530.JPG'
+	exclude {it.file.name.startsWith('IMG_252')}
+	from 'ImgSrc'
+}
+
+task copyImages2 (type: Copy){
+	with contentSpec
+	into 'ImgDst'
+}
+
+task copyConfig (type: Copy) {
+  include 'web.xml'
+  from 'src'
+  into 'config'
+  expand (
+    [resourceRefName: 'jdbc/JacketDB']
+  )
+}

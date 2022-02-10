@@ -363,3 +363,36 @@ Gradle task diagram
 Screen clipping taken: 08-02-2022 09:46 AM
 
 ![image](https://user-images.githubusercontent.com/50944453/152917671-29e5ffb7-afb1-4fc3-983b-e03eb3dfd53c.png)
+
+
+
+
+To see in list of dependent task in tree , add below plugin
+There is a great plugin which visualize dependencies between tasks:
+https://plugins.gradle.org/plugin/org.barfuin.gradle.taskinfo
+After adding it to your project run e.g. ./gradlew tiTree build
+
+plugins {id "org.barfuin.gradle.taskinfo"version "1.3.1"}
+
+gradlew tiTree build
+
+Screen clipping taken: 08-02-2022 09:46 AM
+
+https://tomgregory.com/gradle-dependency-tree/
+https://tomgregory.com/how-to-use-gradle-api-vs-implementation-dependencies-with-the-java-library-plugin/
+https://tomgregory.com/gradle-implementation-vs-compile-dependencies/
+
+
+dependecy tree
+gradle  dependencies --configuration compileClasspath
+
+gradle my-subproject:dependencies --configuration compileClasspath
+ 
+
+configuration
+api =compileTime classpath
+Implementation  = runtime classpath
+
+
+
+

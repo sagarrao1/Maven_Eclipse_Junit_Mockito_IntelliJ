@@ -18,13 +18,16 @@ buildscript {
 plugins {
   id "org.flywaydb.flyway" version "${flyway_version}" apply false
   id 'java'
+  
 }
 
 
 subprojects {
 
   apply plugin: 'java'
-
+  apply plugin: 'project-report'
+  
+  
   version = '0.1-SNAPSHOT'
 
   sourceCompatibility = JavaVersion.VERSION_11

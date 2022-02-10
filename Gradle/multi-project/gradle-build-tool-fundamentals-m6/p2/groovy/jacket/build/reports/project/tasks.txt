@@ -1,0 +1,80 @@
+
+------------------------------------------------------------
+Tasks runnable from root project 'jacket'
+------------------------------------------------------------
+
+Application tasks
+-----------------
+bootRun - Runs this project as a Spring Boot application.
+
+Build tasks
+-----------
+assemble - Assembles the outputs of this project.
+bootJar - Assembles an executable jar archive containing the main classes and their dependencies.
+bootWar - Assembles an executable war archive containing webapp content, and the main classes and their dependencies.
+build - Assembles and tests this project.
+buildDependents - Assembles and tests this project and all projects that depend on it.
+buildNeeded - Assembles and tests this project and all projects it depends on.
+classes - Assembles main classes.
+clean - Deletes the build directory.
+jar - Assembles a jar archive containing the main classes.
+testClasses - Assembles test classes.
+war - Generates a war archive with all the compiled classes, the web-app content and the libraries.
+
+Build Setup tasks
+-----------------
+init - Initializes a new Gradle build.
+wrapper - Generates Gradle wrapper files.
+
+Deploy tasks
+------------
+migrateProduction - Run migration scripts for production
+
+Documentation tasks
+-------------------
+javadoc - Generates Javadoc API documentation for the main source code.
+
+Flyway tasks
+------------
+flywayBaseline - Baselines an existing database, excluding all migrations up to and including baselineVersion.
+flywayClean - Drops all objects in the configured schemas.
+flywayInfo - Prints the details and status information about all the migrations.
+flywayMigrate - Migrates the schema to the latest version.
+flywayRepair - Repairs the Flyway schema history table.
+flywayUndo - Undoes the most recently applied versioned migration. Flyway Pro and Flyway Enterprise only.
+flywayValidate - Validate applied migrations against resolved ones (on the filesystem or classpath) to detect accidental changes that may prevent the schema(s) from being recreated exactly. Validation fails if differences in migration names, types or checksums are found, versions have been applied that aren"t resolved locally anymore or versions have been resolved that haven"t been applied yet
+
+Help tasks
+----------
+buildEnvironment - Displays all buildscript dependencies declared in root project 'jacket'.
+dependencies - Displays all dependencies declared in root project 'jacket'.
+dependencyInsight - Displays the insight into a specific dependency in root project 'jacket'.
+dependencyManagement - Displays the dependency management declared in project ':JacketWeb'.
+help - Displays a help message.
+javaToolchains - Displays the detected java toolchains.
+outgoingVariants - Displays the outgoing variants of root project 'jacket'.
+projects - Displays the sub-projects of root project 'jacket'.
+properties - Displays the properties of root project 'jacket'.
+tasks - Displays the tasks runnable from root project 'jacket' (some of the displayed tasks may belong to subprojects).
+
+Reporting tasks
+---------------
+projectReport - Generates a report about your project.
+
+Test tasks
+----------
+migrateTest - Run migration scripts for test
+
+Verification tasks
+------------------
+check - Runs all checks.
+test - Runs the unit tests.
+
+Rules
+-----
+Pattern: clean<TaskName>: Cleans the output files of a task.
+Pattern: build<ConfigurationName>: Assembles the artifacts of a configuration.
+
+To see all tasks and more detail, run gradle tasks --all
+
+To see more detail about a task, run gradle help --task <task>
