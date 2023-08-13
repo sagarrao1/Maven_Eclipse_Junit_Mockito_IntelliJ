@@ -1,0 +1,45 @@
+
+ 
+
+
+Eclipse shortcuts
+
+Crtl +1 for quickfix
+To run specific junit , highlight that Junit and run as Junit
+
+Views are like different windows in eclipse like project explorer, console, problems , etc..
+
+Perspective is arrangement of different windows like Java perspective project explorer in left, console in down like that.
+In Debug perspective, you see break point windows, out line , failure trace.
+
+
+ALT + up arrow/ down arrow -> to move selected line up and down
+
+Open file / class
+CTRL + SHFT +R  -> to open recourse   type camel case to search faster SH for StringHelper class
+CTRL + SHFT +R  -> to open type 
+
+CTRL + T  -> to see completed hierarchy of that class.
+CTRL + L  -> to go line number
+CTRL + Q  -> to go to last edited line
+CTRL + D -> to delete the line
+CTRL + O  -> to see outline
+CTRL + E  -> to shift editor.
+
+ALT + SHFT + R --> to refactor or rename local variable /method/ class names
+	Another to above command to highlight the word and modify, it modifies all places where the word it used
+ALT + SHFT + M --> to refactor or extract part and create a method  
+ALT + SHFT + I -->  reverse to above extract . It is inline refactor.
+ALT + SHFT + L -->  extract local variable.
+ALT + SHFT + I -->   reverse to above extract . It is inline variable. 
+Extract constant  -> right click > refactor > Extract constant
+
+ALT + SHFT + S -->  to generate setters ,getters and others
+
+Formatting source code : to format we need right click > source > format
+To automacticall format every time you save code
+Window > preferences > save action > check perform selected action > format
+
+Debug mode:
+
+
