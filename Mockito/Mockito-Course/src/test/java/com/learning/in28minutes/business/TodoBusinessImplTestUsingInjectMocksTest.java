@@ -1,10 +1,10 @@
 package com.learning.in28minutes.business;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -13,18 +13,13 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import org.hamcrest.Matcher;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.junit.MockitoRule;
 
 import com.learning.in28minutes.data.api.TodoService;
@@ -54,7 +49,7 @@ public class TodoBusinessImplTestUsingInjectMocksTest {
 		
 		when(todoServiceMock.retriveTodos("Sagar")).thenReturn(TodoList);
 		
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Sagar");
 		assertEquals(2, retriveTodoFiltered.size());
 
 	}
@@ -62,7 +57,7 @@ public class TodoBusinessImplTestUsingInjectMocksTest {
 	@Test
 	public void testRetriveTodoRelatedToSpring_withEmptyListMock() {
 		
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Dummy");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Dummy");
 		assertEquals(0, retriveTodoFiltered.size());
 
 	}
@@ -76,7 +71,7 @@ public class TodoBusinessImplTestUsingInjectMocksTest {
 		given(todoServiceMock.retriveTodos("Sagar")).willReturn(TodoList);
 		
 		//when
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Sagar");
 		
 		//then
 		assertThat(retriveTodoFiltered.size(),is(2));

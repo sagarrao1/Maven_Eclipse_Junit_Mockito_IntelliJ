@@ -3,9 +3,10 @@ package com.learning.in28minutes.business;
 // With @MOck, @InjectMock Annotations
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import static org.mockito.BDDMockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.learning.in28minutes.data.api.TodoService;
 
@@ -36,7 +37,7 @@ public class TodoBusinessImplTestUingInjectMockTest_Old {
 		when(todoServiceMock.retriveTodos("Sagar")).thenReturn(value);
 
 //		TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Sagar");
 		assertEquals(2, retriveTodoFiltered.size());
 
 	}
@@ -46,7 +47,7 @@ public class TodoBusinessImplTestUingInjectMockTest_Old {
 
 //		TodoService todoServiceMock = mock(TodoService.class);
 //		TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Dummy");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Dummy");
 		assertEquals(0, retriveTodoFiltered.size());
 
 	}
@@ -60,7 +61,7 @@ public class TodoBusinessImplTestUingInjectMockTest_Old {
 
 
 //		When
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Sagar");
 
 //		Then
 		assertThat(retriveTodoFiltered.size(), is(2));

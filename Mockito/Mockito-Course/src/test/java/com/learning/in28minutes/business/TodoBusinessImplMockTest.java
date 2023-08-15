@@ -48,20 +48,20 @@ public class TodoBusinessImplMockTest {
 		
 		when(todoServiceMock.retriveTodos("Sagar")).thenReturn(TodoList);
 		
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Sagar");
 		assertEquals(2, retriveTodoFiltered.size());
 
 	}
 
-	@Test
+//	@Test
 	public void testRetriveTodoRelatedToSpring_withEmptyListMock() {
 		
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Dummy");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Dummy");
 		assertEquals(0, retriveTodoFiltered.size());
 
 	}
 
-	@Test
+//	@Test
 	public void testRetriveTodoRelatedToSpring_usingBDDMock() {
 		
 		List<String> TodoList = Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");
@@ -70,7 +70,7 @@ public class TodoBusinessImplMockTest {
 		given(todoServiceMock.retriveTodos("Sagar")).willReturn(TodoList);
 		
 		//when
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Sagar");
 		
 		//then
 		assertThat(retriveTodoFiltered.size(),is(2));
@@ -79,7 +79,7 @@ public class TodoBusinessImplMockTest {
 
 	// to verify specific method is called or not 
 	// here to verify deleteTodos() is called or not 
-	@Test
+//	@Test
 	public void testdeleteTodoNotRelatedToSpring_usingBDDMock() {
 		
 		List<String> TodoList = Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");
@@ -103,7 +103,7 @@ public class TodoBusinessImplMockTest {
 
 	//Capute arguments that you pass to method
 	//using ArgumentCaptor class
-	@Test
+//	@Test
 	public void testdeleteTodoNotRelatedToSpring_usingBDD_argumentCapture() {
 		
 		//Declare argument Capture

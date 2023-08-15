@@ -1,5 +1,8 @@
 package com.learning.in28minutes.business;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,26 +34,26 @@ public class TodoBusinessImplStubTest {
 	
 	@Test
 	public void testRetriveTodoRelatedToSpring_usingStub() {
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Sagar");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Sagar");
 		assertEquals(2, retriveTodoFiltered.size());
 
 	}
 
 	@Test
 	public void testRetriveTodoRelatedToSpring_usingStub2() {
-		List<String> retriveTodoFiltered = businessImpl.retriveTodoRelatedToSpring("Dummy");
+		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Dummy");
 		assertEquals(0, retriveTodoFiltered.size());
 
 	}
 
-	/*
-	 * @Test public void testRetriveTodoRelatedToSpring_usingStub3() { List<String>
-	 * expectedFilteredArray = businessImpl.retriveTodoRelatedToSpring("Sagar");
-	 * List<String> actualArray = Arrays.asList("Learn Spring",
-	 * "Learn Spring boot");
-	 * 
-	 * assertThat(actualArray, is(expectedFilteredArray));
-	 * 
-	 * }
-	 */
+	
+	  @Test public void testRetriveTodoRelatedToSpring_usingStub3() { List<String>
+	  expectedFilteredArray = businessImpl.retriveTodosRealtedToSpring("Sagar");
+	  List<String> actualArray = Arrays.asList("Learn Spring",
+	  "Learn Spring boot");
+	  
+	  assertThat(actualArray, is(expectedFilteredArray));
+	  
+	  }
+	 
 }

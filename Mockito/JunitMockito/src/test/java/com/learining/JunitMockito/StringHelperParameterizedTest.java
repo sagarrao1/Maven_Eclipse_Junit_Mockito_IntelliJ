@@ -26,7 +26,6 @@ public class StringHelperParameterizedTest{
 	}
 
 	public StringHelperParameterizedTest(String input, String expectedOutput) {
-		super();
 		this.input = input;
 		this.expectedOutput = expectedOutput;
 	}
