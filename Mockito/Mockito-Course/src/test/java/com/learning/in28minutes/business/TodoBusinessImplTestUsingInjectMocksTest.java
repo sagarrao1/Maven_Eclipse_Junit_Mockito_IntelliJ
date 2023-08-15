@@ -25,7 +25,7 @@ import org.mockito.junit.MockitoRule;
 import com.learning.in28minutes.data.api.TodoService;
 
 // With Runners , you can only use one runner at at time, you can't use other runner like springrunner
-// other option is to use rule istead of runners.
+// other option is to use rule instead of runners.
 
 //@RunWith(MockitoJUnitRunner.class)
 public class TodoBusinessImplTestUsingInjectMocksTest {

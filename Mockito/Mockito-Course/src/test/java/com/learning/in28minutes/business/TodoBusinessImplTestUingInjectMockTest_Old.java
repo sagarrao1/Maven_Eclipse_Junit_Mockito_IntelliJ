@@ -25,10 +25,12 @@ public class TodoBusinessImplTestUingInjectMockTest_Old {
 
 	@Mock
 	TodoService todoServiceMock;
+//	TodoService todoServiceMock = mock(TodoService.class);
 	
 	@InjectMocks
 	TodoBusinessImpl businessImpl;
-
+//	TodoBusinessImpl businessImpl = new TodoBusinessImpl(todoServiceMock);
+	
 	@Test
 	public void testRetriveTodoRelatedToSpring_usingMock() {
 

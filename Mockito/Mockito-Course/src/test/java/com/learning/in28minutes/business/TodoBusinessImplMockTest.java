@@ -21,7 +21,6 @@ import org.mockito.ArgumentCaptor;
 
 import com.learning.in28minutes.data.api.TodoService;
 
-
 public class TodoBusinessImplMockTest {
 
 	TodoService todoServiceMock;
@@ -53,7 +52,7 @@ public class TodoBusinessImplMockTest {
 
 	}
 
-//	@Test
+	@Test
 	public void testRetriveTodoRelatedToSpring_withEmptyListMock() {
 		
 		List<String> retriveTodoFiltered = businessImpl.retriveTodosRealtedToSpring("Dummy");
@@ -61,12 +60,13 @@ public class TodoBusinessImplMockTest {
 
 	}
 
-//	@Test
+	
+//	BDD style of writting test cases
+//	Given , when , then 
+	@Test
 	public void testRetriveTodoRelatedToSpring_usingBDDMock() {
-		
-		List<String> TodoList = Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");
-		
 		//given		
+		List<String> TodoList = Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");
 		given(todoServiceMock.retriveTodos("Sagar")).willReturn(TodoList);
 		
 		//when
@@ -79,7 +79,7 @@ public class TodoBusinessImplMockTest {
 
 	// to verify specific method is called or not 
 	// here to verify deleteTodos() is called or not 
-//	@Test
+	@Test
 	public void testdeleteTodoNotRelatedToSpring_usingBDDMock() {
 		
 		List<String> TodoList = Arrays.asList("Learn Spring", "Learn Spring boot", "Learn Java");
@@ -103,7 +103,7 @@ public class TodoBusinessImplMockTest {
 
 	//Capute arguments that you pass to method
 	//using ArgumentCaptor class
-//	@Test
+	@Test
 	public void testdeleteTodoNotRelatedToSpring_usingBDD_argumentCapture() {
 		
 		//Declare argument Capture
