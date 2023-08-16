@@ -1,6 +1,10 @@
 package com.in28minutes.example.layering.business.client;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -9,276 +13,220 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.MockitoRule;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.in28minutes.example.layering.business.api.client.ClientBO;
 import com.in28minutes.example.layering.business.impl.client.ClientBOImpl;
 import com.in28minutes.example.layering.data.api.client.ClientDO;
 import com.in28minutes.example.layering.data.api.client.ProductDO;
 import com.in28minutes.example.layering.model.api.client.Amount;
 import com.in28minutes.example.layering.model.api.client.Client;
+import com.in28minutes.example.layering.model.api.client.CollateralType;
 import com.in28minutes.example.layering.model.api.client.Currency;
 import com.in28minutes.example.layering.model.api.client.Product;
 import com.in28minutes.example.layering.model.api.client.ProductType;
 import com.in28minutes.example.layering.model.impl.client.AmountImpl;
 import com.in28minutes.example.layering.model.impl.client.ClientImpl;
+import com.in28minutes.example.layering.model.impl.client.CollateralImpl;
 import com.in28minutes.example.layering.model.impl.client.ProductImpl;
 
-//@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class ClientBOMockitoTest {
 
-	@Rule
-	public MockitoRule mockitoRule = MockitoJUnit.rule();
+//	@Rule
+//	public MockitoRule  MockitoRule = MockitoJUnit.rule();
 	
 	@Mock
-	private ProductDO productDO;
+	ProductDO productDO;
 
 	@Mock
-	private ClientDO clientDO;
-
+	ClientDO clientDO;
+	
 	@InjectMocks
-	ClientBO clientBOImpl = new ClientBOImpl();
+	ClientBOImpl clientBO;
+	
 	
 	@Captor
-	ArgumentCaptor<Client> clientArgumentCaptor;
-
-	private static final int DUMMY_CLIENT_ID = 1;
+	ArgumentCaptor<Client> argumentCaptor;
+	
+	public static final int DUMMY_CLIENT_ID = 1;
 	
 	@Test
-	public void testClientProductSum() {
+	public void testGetClientProductsSum() {
+		List<Product> products = Arrays.asList(createProductWithAmount("5.0",100),
+				createProductWithAmount("6.0",200));	
 		
-		List<Product> products = Arrays.asList(createNewProduct("5.0"), createNewProduct("6.0"));
-		System.out.println(products.size());
-		when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(products);		
+		when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(products);
 		
-		Amount actualAmt = clientBOImpl.getClientProductsSum(DUMMY_CLIENT_ID);
-		System.out.println(actualAmt.getValue());
-		assertAmountEquals( new AmountImpl(new BigDecimal("11.0"), Currency.EURO),  actualAmt);
+		Amount clientProductsSum = clientBO.getClientProductsSum(DUMMY_CLIENT_ID);
+		
+		Amount expectedProuctSum = new AmountImpl(new BigDecimal("11.0"), Currency.EURO);
+		assertAmountEquals(expectedProuctSum, clientProductsSum);
 		
 	}
+	
+//	database products    are empty  (mocked)
+//	userEntered products are      200, 300
+//	1. product id 200 will be inserted - > userEnteredProducts.get(0)
+//	2. product id 300 will be inserted - > userEnteredProducts.get(1)
+//	3. verify updateProduct method never called
+//	4. verify deleteProduct method never called
+	
+	@Test
+	public void testSaveChangedProducts_UserEnteredProducts_NoDatabaseProducts() {
+		List<Product> emptyProductsList = new ArrayList<Product>();
+		
+		when(productDO.getAllProducts(1)).thenReturn(emptyProductsList);
+		
+		List<Product> userEnteredProducts = Arrays.asList(createProductWithAmount("7.0",200),
+				createProductWithAmount("6.0",300)); 
+		
+		clientBO.saveChangedProducts(1, userEnteredProducts);
+		
+		verify(productDO).insertProduct(1, userEnteredProducts.get(0));
+		verify(productDO).insertProduct(1, userEnteredProducts.get(1));
+		verify(productDO, never()).updateProduct(1, userEnteredProducts.get(0));
+		verify(productDO, never()).deleteProduct(1, userEnteredProducts.get(0));
+		
+		verify(productDO, times(1)).insertProduct(1, userEnteredProducts.get(0));
+		verify(productDO, atLeastOnce()).insertProduct(1, userEnteredProducts.get(0));	
 
-	private void assertAmountEquals(Amount expectedAmt, Amount actualAmt) {
-		assertEquals(new BigDecimal("11.0"), actualAmt.getValue());
-		assertEquals(expectedAmt.getCurrency(), actualAmt.getCurrency());
 	}
 	
 	
-	private Product createNewProduct(String amt) {
-		return new ProductImpl(100, "gold", ProductType.BANK_GUARANTEE, 
-				new AmountImpl(new BigDecimal(amt), Currency.EURO));
+//	database products    are 100, 200  (mocked)
+//	userEntered products are      200, 300
+//	1. product id 200 will be updated - > userEnteredProducts.get(0)
+//	2. product id 300 will be inserted - > userEnteredProducts.get(1)
+//	3. product id 100 will be deleted  - > databaseProducts.get(0)
+//	3. verify product id 100 updateProduct method never called
+//	4. verify product id 200 deleteProduct method never called	
+	
+	@Test
+	public void testSaveChangedProductUserEnteredProducts_PlusDatabaseProducts() {
+		List<Product> databaseProducts = Arrays.asList(createProductWithAmount("5.0",100),
+				createProductWithAmount("6.0",200));		
+		when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(databaseProducts);
+		
+		List<Product> userEnteredProducts = Arrays.asList(createProductWithAmount("7.0",200),
+				createProductWithAmount("6.0",300)); 
+		
+		clientBO.saveChangedProducts(1, userEnteredProducts);
+		
+		verify(productDO).updateProduct(1, userEnteredProducts.get(0));
+		verify(productDO).insertProduct(1, userEnteredProducts.get(1));
+		verify(productDO).deleteProduct(1, databaseProducts.get(0));
+		
+		verify(productDO, never()).updateProduct(1, databaseProducts.get(0));	
+		verify(productDO, never()).deleteProduct(1, userEnteredProducts.get(0));
+		verify(productDO, times(1)).insertProduct(1, userEnteredProducts.get(1));
+		
+
 	}
+	
+//	database products    are 100, 200  (mocked)
+//	userEntered products are  Empty
+//	1. product id 100 will be deleted - > databaseProducts.get(0)
+//	2. product id 200 will be deleted - > databaseProducts.get(1)
+//	3. verify product id 100 updateProduct method never called
+//	4. verify product id 200 insertProduct method never called
+	
+	@Test
+	public void testSaveChangedProduct_NoUserEnteredProducts_PlusDatabaseProductsDeleted() {
+		List<Product> databaseProducts = Arrays.asList(createProductWithAmount("5.0",100),
+				createProductWithAmount("6.0",200));		
+		when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(databaseProducts);
+		
+		List<Product> emptyProductsList = new ArrayList<Product>();
+		
+		clientBO.saveChangedProducts(1, emptyProductsList);
+		
+		verify(productDO).deleteProduct(1, databaseProducts.get(0));
+		verify(productDO).deleteProduct(1, databaseProducts.get(1));
+		
+		verify(productDO, never()).insertProduct(1, databaseProducts.get(0));		
+		verify(productDO, never()).updateProduct(1, databaseProducts.get(0));	
+		verify(productDO, times(1)).deleteProduct(1, databaseProducts.get(1));
 
-	@Test
-   public void saveChangedProducts_ProductInScreenAndNotInDatabase_ProductIsInserted() {
+	}	
 	
-		List<Product> dataBaseproducts = Arrays.asList(createNewProduct("5.0"));	   
-		List<Product> userEnteredProducts = Arrays.asList(createNewProduct("6.0"));
-		List<Product> emptyProducts =   new ArrayList<Product>(); // Arrays.asList();
-		
-		when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(emptyProducts);
-		clientBOImpl.saveChangedProducts(DUMMY_CLIENT_ID, userEnteredProducts);
-		
-		//Different ways of verifying the method
-		verify(productDO).insertProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-		verify(productDO,Mockito.times(1)).insertProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-		verify(productDO,Mockito.atLeastOnce()).insertProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-		
-		
-		//verifying the methods which are not called
-		verify(productDO, Mockito.never()).deleteProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-		verify(productDO, Mockito.never()).updateProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-   }
-   
+	
+//	database products    are 100, 200  (mocked)
+//	userEntered products are  100,200
+//	1. product id 100 will be updated - > databaseProducts.get(0)
+//	2. product id 200 will be updated - > databaseProducts.get(1)
+//	3. verify product id 100 deleteProduct method never called
+//	4. verify product id 200 insertProduct method never called
+	
 	@Test
-	   public void saveChangedProducts_ProductInScreenAndInDatabase_IsUpdated() {
+	public void testSaveChangedProduct_verifyOnlyproductsAreUpdated() {
+			
+		List<Product> databaseProducts = Arrays.asList(createProductWithAmount("5.0",100),
+				createProductWithAmount("6.0",200));	
 		
-			List<Product> dataBaseproducts = Arrays.asList(createNewProduct("5.0"));	   
-			List<Product> userEnteredProducts = Arrays.asList(createNewProduct("6.0"));
-			List<Product> emptyProducts =   new ArrayList<Product>(); // Arrays.asList();
-			
-			when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(dataBaseproducts);
-			clientBOImpl.saveChangedProducts(DUMMY_CLIENT_ID, userEnteredProducts);
-			
-			//Different ways of verifying the method
-			verify(productDO).updateProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-			verify(productDO,Mockito.times(1)).updateProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-			verify(productDO,Mockito.atLeastOnce()).updateProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-			
-			
-			//verifying the methods which are not called
-			verify(productDO, Mockito.never()).deleteProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-			verify(productDO, Mockito.never()).insertProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-	   }
+		when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(databaseProducts);
+		
+		List<Product> userEnteredProducts = Arrays.asList(createProductWithAmount("5.0",100),
+				createProductWithAmount("6.0",200));
+		
+		clientBO.saveChangedProducts(1, userEnteredProducts);
+		
+		verify(productDO).updateProduct(1, userEnteredProducts.get(0));
+		verify(productDO).updateProduct(1, userEnteredProducts.get(1));
+		
+		verify(productDO, never()).insertProduct(1, userEnteredProducts.get(0));		
+		verify(productDO, never()).deleteProduct(1, userEnteredProducts.get(1));
 
-	@Test
-	   public void saveChangedProducts_ProductInDatabase_ButNOtInScreen_Deleted() {
-		
-			List<Product> dataBaseproducts = Arrays.asList(createNewProduct("5.0"));	   
-			List<Product> userEnteredProducts = Arrays.asList(createNewProduct("6.0"));
-			List<Product> emptyProducts =   new ArrayList<Product>(); // Arrays.asList();
-			
-			when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(dataBaseproducts);
-			clientBOImpl.saveChangedProducts(DUMMY_CLIENT_ID, emptyProducts);
-			
-			//Different ways of verifying the method
-			verify(productDO).deleteProduct(DUMMY_CLIENT_ID, dataBaseproducts.get(0));
-			verify(productDO,Mockito.times(1)).deleteProduct(DUMMY_CLIENT_ID, dataBaseproducts.get(0));
-			verify(productDO,Mockito.atLeastOnce()).deleteProduct(DUMMY_CLIENT_ID, dataBaseproducts.get(0));
-			
-			
-			//verifying the methods which are not called
-			verify(productDO, Mockito.never()).updateProduct(DUMMY_CLIENT_ID, dataBaseproducts.get(0));
-			verify(productDO, Mockito.never()).insertProduct(DUMMY_CLIENT_ID, dataBaseproducts.get(0));
-	   }
-	
-	@Test
-	   public void saveChangedProducts_MultipleProductInDatabaseAndScreen_IsUpdated() {
-		
-			List<Product> dataBaseproducts = Arrays.asList(createNewProduct("5.0"),createNewProduct("3.0"));	   
-			List<Product> userEnteredProducts = Arrays.asList(createNewProduct("1.0"),createNewProduct("6.0"));
-			
-			
-			when(productDO.getAllProducts(DUMMY_CLIENT_ID)).thenReturn(dataBaseproducts);
-			clientBOImpl.saveChangedProducts(DUMMY_CLIENT_ID, userEnteredProducts);
-			
-			//Different ways of verifying the method
-			verify(productDO).updateProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-			verify(productDO,Mockito.times(1)).updateProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-			verify(productDO,Mockito.atLeastOnce()).updateProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-			
-			
-//			//verifying the methods which are not called
-			verify(productDO, Mockito.never()).deleteProduct(DUMMY_CLIENT_ID, dataBaseproducts.get(0));
-			verify(productDO, Mockito.never()).deleteProduct(DUMMY_CLIENT_ID, dataBaseproducts.get(0));
-			verify(productDO, Mockito.never()).insertProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-			verify(productDO, Mockito.never()).insertProduct(DUMMY_CLIENT_ID, userEnteredProducts.get(0));
-	   }
-	
+	}		
 	
 	@Test
 	public void testCalculateAndSaveClientProductSum() {
 		
-		List<Product> products = Arrays.asList(createNewProduct("8.0"), createNewProduct("6.0"));
+		List<Product> products = Arrays.asList(createProductWithAmount("5.0",100),
+												createProductWithAmount("6.0",200));	
 		
-		ClientImpl client = new ClientImpl(0, null, null, null, products);		
+//		List<Collateral> collaterals =Arrays.asList( newCollateralWIthId(100),
+//				newCollateralWIthId(200)); 
 		
-		clientBOImpl.calculateAndSaveClientProductSum(client);
+		Client client = new ClientImpl(1, null,null,null,products);		
+		
+		clientBO.calculateAndSaveClientProductSum(client);
 		
 		//verify whether below method is called
 		verify(clientDO).saveClient(client);
 		
-		verify(clientDO).saveClient(clientArgumentCaptor.capture());
+		verify(clientDO).saveClient(argumentCaptor.capture());
 		
 		//using argument Capture and verifying
-		assertEquals(new BigDecimal("14.0"), clientArgumentCaptor.getValue().getProductAmount());
+		assertEquals(new BigDecimal("11.0"), argumentCaptor.getValue().getProductAmount());
+		
 		
 	}
 	
 	
 	
-	
-}
+//	private methods
 
-/*
- * @RunWith(MockitoJUnitRunner.class) public class ClientBOMockitoTest {
- * 
- * @Mock private ProductDO productDO;
- * 
- * @Mock private ClientDO clientDO;
- * 
- * @InjectMocks private ClientBO clientBO = new ClientBOImpl();
- * 
- * @Captor ArgumentCaptor<Client> clientArgumentCaptured;
- * 
- * private static final int DUMMY_CLIENT_ID = 1;
- * 
- * @Test public void testClientProductSum() {
- * 
- * List<Product> products = Arrays.asList(createProductWithAmount("5.0"),
- * createProductWithAmount("6.0"));
- * 
- * when(productDO.getAllProducts(anyInt())).thenReturn(products);
- * 
- * assertAmountEquals(new AmountImpl(new BigDecimal("11.0"), Currency.EURO),
- * clientBO.getClientProductsSum(DUMMY_CLIENT_ID)); }
- * 
- * private void assertAmountEquals(Amount expectedAmount, Amount actualAmount) {
- * assertEquals(expectedAmount.getCurrency(), actualAmount.getCurrency());
- * assertEquals(expectedAmount.getValue(), actualAmount.getValue()); }
- * 
- * private Product createProductWithAmount(String amount) { return new
- * ProductImpl(100, "Product 15", ProductType.BANK_GUARANTEE, new AmountImpl(new
- * BigDecimal(amount), Currency.EURO)); }
- * 
- * @Test public void
- * saveChangedProducts_ProductInScreenAndNotInDatabase_ProductIsInserted() {
- * 
- * List<Product> screenProducts = Arrays.asList(createProduct());
- * 
- * List<Product> emptyDatabaseProducts = new ArrayList<Product>();
- * 
- * stub(productDO.getAllProducts(anyInt())).toReturn(emptyDatabaseProducts);
- * 
- * clientBO.saveChangedProducts(1, screenProducts);
- * 
- * verify(productDO).insertProduct(1, screenProducts.get(0)); }
- * 
- * private Product createProduct() { return new ProductImpl(100, "Product 15",
- * ProductType.BANK_GUARANTEE, new AmountImpl(new BigDecimal("5.0"),
- * Currency.EURO)); }
- * 
- * @Test public void saveChangedProducts_ProductInScreenAndDatabase_IsUpdated()
- * { Product screenProduct = createProductWithAmount("5.0");
- * 
- * List<Product> databaseProducts =
- * Arrays.asList(createProductWithAmount("6.0")); List<Product> screenProducts =
- * Arrays.asList(screenProduct);
- * 
- * stub(productDO.getAllProducts(anyInt())).toReturn(databaseProducts);
- * 
- * clientBO.saveChangedProducts(1, screenProducts);
- * 
- * verify(productDO).updateProduct(1, screenProduct); }
- * 
- * @Test public void
- * saveChangedProducts_ProductInDatabaseButNotInScreen_Deleted() {
- * 
- * Product productFromDatabase = createProduct();
- * 
- * List<Product> databaseProducts = Arrays.asList(productFromDatabase);
- * List<Product> emptyScreenProducts = new ArrayList<Product>();
- * 
- * stub(productDO.getAllProducts(anyInt())).toReturn(databaseProducts);
- * 
- * clientBO.saveChangedProducts(1, emptyScreenProducts);
- * 
- * verify(productDO).deleteProduct(1, productFromDatabase); }
- * 
- * @Test public void calculateAndSaveClientProductSum1() {
- * 
- * ClientImpl client = createClientWithProducts(createProductWithAmount("6.0"),
- * createProductWithAmount("6.0"));
- * 
- * clientBO.calculateAndSaveClientProductSum(client);
- * 
- * verify(clientDO).saveClient(clientArgumentCaptured.capture());
- * 
- * assertEquals(new BigDecimal("12.0"),
- * clientArgumentCaptured.getValue().getProductAmount());
- * 
- * }
- * 
- * private ClientImpl createClientWithProducts(Product... products) { ClientImpl
- * client = new ClientImpl(0, null, null, null, Arrays.asList(products)); return
- * client; }
- * 
- * }
- */
+	private CollateralImpl newCollateralWIthId(long id) {
+		return new CollateralImpl(id, "Sagar", CollateralType.BONDS);
+	}
+	
+	private void assertAmountEquals(Amount expectedProuctSum, Amount clientProductsSum) {
+		assertEquals(expectedProuctSum.getValue(), clientProductsSum.getValue());
+		assertEquals(expectedProuctSum.getCurrency(), clientProductsSum.getCurrency());
+	}
+
+	private Product createProductWithAmount(String string, long id) {
+		return new ProductImpl(id, "Product 15", ProductType.BANK_GUARANTEE, 
+				new AmountImpl(new BigDecimal(string), Currency.EURO) );
+	}
+
+}

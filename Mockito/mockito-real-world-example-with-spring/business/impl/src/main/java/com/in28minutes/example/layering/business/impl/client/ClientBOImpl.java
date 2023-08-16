@@ -34,7 +34,7 @@ public class ClientBOImpl implements ClientBO {
 
 		List<Product> existingProducts = productDO.getAllProducts(clientId);
 
-		System.out.println("existingProducts : "+existingProducts.size());
+//		System.out.println("existingProducts : "+existingProducts.size());
 		return new AmountImpl(calculateClientProductSum(existingProducts), Currency.EURO);
 	}
 
@@ -42,6 +42,10 @@ public class ClientBOImpl implements ClientBO {
 	public void saveChangedProducts(long clientId, List<Product> userEnteredProducts) {
 
 		List<Product> databaseProducts = productDO.getAllProducts(clientId);
+		
+		for (Product product : databaseProducts) {
+//			System.out.println("databaseProducts : "+product.getId());
+		}
 
 		updateExistingProductsWhichAreModified(clientId, userEnteredProducts, databaseProducts);
 
@@ -62,6 +66,7 @@ public class ClientBOImpl implements ClientBO {
 		Map<Long, Product> newProductsMap = convertToMap(newProducts);
 		for (Product product1 : existingProducts) {
 			if (!newProductsMap.containsKey(product1.getId())) {
+				System.out.println("product1 : "+product1.getId());
 				productDO.deleteProduct(clientId, product1);
 			}
 		}
@@ -70,6 +75,7 @@ public class ClientBOImpl implements ClientBO {
 	private void insertNewProducts(long clientId, List<Product> newProducts, List<Product> existingProducts) {
 		Map<Long, Product> existingProductsMap = convertToMap(existingProducts);
 		for (Product newProduct : newProducts) {
+			System.out.println("newProduct : "+newProduct.getId());
 			if (!existingProductsMap.containsKey(newProduct.getId())) {
 				productDO.insertProduct(clientId, newProduct);
 			}
@@ -89,6 +95,7 @@ public class ClientBOImpl implements ClientBO {
 	private Map<Long, Product> convertToMap(List<Product> products) {
 		Map<Long, Product> productMap = new HashMap<Long, Product>();
 		for (Product existingProduct : products) {
+			System.out.println("existingProduct : "+existingProduct.getId());
 			productMap.put(existingProduct.getId(), existingProduct);
 		}
 		return productMap;
