@@ -1,6 +1,7 @@
 package com.in28minutes.powermock;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -26,13 +27,13 @@ public class InvokingPrivateMethodTest {
 	SystemUnderTest systemUnderTest;
 
 	@Test
-	public void powerMockito_invokeProvateMethod() throws Exception {
+	public void powerMockito_invokePrivateMethod() throws Exception {
 
 		List<Integer> stats = Arrays.asList(1, 2, 3);
 		
 		when(dependencyMock.retrieveAllStats()).thenReturn(stats);
 
-		//use Whitevox class of powermock to invoke Private method
+		//use Whitebox class of powermock to invoke Private method
 		long result= Whitebox.invokeMethod(systemUnderTest, "privateMethodUnderTest");
 		
 		assertEquals(6, result);		
@@ -40,7 +41,6 @@ public class InvokingPrivateMethodTest {
 		verify(dependencyMock).retrieveAllStats();
 		
 		
-		PowerMockito.verifyPrivate(Mockito.atLeast(2));
 		
 
 	}

@@ -11,57 +11,37 @@ public class SpyTest {
 
 	@Test
 	public void test() {
-		List arrayListMock= mock(ArrayList.class);
+		List arrayListMock = mock(ArrayList.class);
 		assertEquals(0, arrayListMock.size());
-		
+
 		when(arrayListMock.size()).thenReturn(5);
 		arrayListMock.add("Dummy");
-		
+
 		assertEquals(5, arrayListMock.size());
-		
+
 	}
 
-	
 	// Spy is like creating new arrayList<>();
 	// mock is creating stub. dummy ArrayList
-	//Spy is also called Partial Mock
+	// Spy is also called Partial Mock
 	@Test
 	public void testSpy() {
-		List arrayListSpy= spy(ArrayList.class);
+		List arrayListSpy = spy(ArrayList.class);
 		assertEquals(0, arrayListSpy.size());
 		arrayListSpy.add("Dummy");
-		
-		assertEquals(1, arrayListSpy.size());		
-//		System.out.println(arrayListSpy.get(0));
-		
+
+		assertEquals(1, arrayListSpy.size());
+		System.out.println(arrayListSpy.get(0));
+
 		when(arrayListSpy.size()).thenReturn(5);
-		
+
 //		To verify particular method is called we use spy
 		verify(arrayListSpy).add("Dummy");
-		
-		verify(arrayListSpy,never()).clear();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+		verify(arrayListSpy, never()).clear();
+		verify(arrayListSpy, never()).remove(0);
+
 		assertEquals(5, arrayListSpy.size());
-		
+
 	}
 }
-

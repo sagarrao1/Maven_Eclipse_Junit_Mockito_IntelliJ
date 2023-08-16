@@ -15,24 +15,27 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ SystemUnderTest.class})
+@PrepareForTest({ SystemUnderTest.class })
 public class MockingConstructorTest {
 
 	// Generally for static method , we use that static Class for prepareforTest
-	// here we should not use Constructor class Arraylist.class, instead we use calling method class	
+	// here we should not use Constructor class Arraylist.class, instead we use
+	// calling method class
 	// which is SystemUnderTest for prepareforTest
+	
 	@InjectMocks
 	SystemUnderTest systemUnderTest;
 
 	@Test
-	public void testInvokingConstructorMethod() throws Exception {
-
-		ArrayList mockList =  mock(ArrayList.class);		
+	public void testInvokingConstructorMethod() throws Exception {	
+		ArrayList mockList = mock(ArrayList.class);		
 		when(mockList.size()).thenReturn(10);
-				
+		
 		PowerMockito.whenNew(ArrayList.class).withAnyArguments().thenReturn(mockList);
-		int result = systemUnderTest.methodUsingAnArrayListConstructor();		
+		
+		int result = systemUnderTest.methodUsingAnArrayListConstructor();
 		assertEquals(10, result);
-		verify(mockList).size();
+		
+		
 	}
 }

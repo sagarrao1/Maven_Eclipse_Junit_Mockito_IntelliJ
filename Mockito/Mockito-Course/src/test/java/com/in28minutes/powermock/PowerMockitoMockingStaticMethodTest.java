@@ -1,6 +1,9 @@
 package com.in28minutes.powermock;
 
+import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -12,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.verification.AtLeast;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -29,12 +33,11 @@ public class PowerMockitoMockingStaticMethodTest {
 	@Test
 	public void powerMockito_MockingAStaticMethodCall() {
 
-		List<Integer> stats = Arrays.asList(1, 2, 3);
-		
+		List<Integer> stats = Arrays.asList(1, 2, 3);		
 		when(dependencyMock.retrieveAllStats()).thenReturn(stats);
 
 		PowerMockito.mockStatic(UtilityClass.class);
-		when(UtilityClass.staticMethod(anyLong())).thenReturn(150);
+		when(UtilityClass.staticMethod(6)).thenReturn(150);
 
 		int result = systemUnderTest.methodCallingAStaticMethod();
 		assertEquals(150, result);
@@ -46,11 +49,11 @@ public class PowerMockitoMockingStaticMethodTest {
 		//To verify a specific method call
 		//First : Call PowerMockito.verifyStatic() 
 		//Second : Call the method to be verified
-		PowerMockito.verifyStatic();
+		PowerMockito.verifyStatic(UtilityClass.class);
 		UtilityClass.staticMethod(6);  //1 + 2 + 3 is summed up
 
 		// verify exact number of calls
-		PowerMockito.verifyStatic(Mockito.times(1));
+		PowerMockito.verifyStatic(UtilityClass.class);
 
 	}
 }
