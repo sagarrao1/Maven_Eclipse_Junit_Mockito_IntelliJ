@@ -1,0 +1,20 @@
+Difference  between when and verify in mockito
+
+When is used when we ask test to setup something before running the test
+When is used when we need to setup up something like external method calls or raise exception
+
+Verify is used to tell something to verify
+Verify is used when we neeed to veirfy where there is not return values for method like void methods
+We want to make sure certain method is called when we run our test , we use verify for this
+
+Void class.method()
+
+Verify(MockClass, atLeastOnce()  ). Save();
+
+
+
+spies we need to use carefully 
+when you call method on spy , a real method gets called unless you explicitly stubed out that method
+It actually creates and uses copy of real object
+we need to use spy when we can't refactor code or when we are not able to use mock on that object
+or legacy code which are new operator to create object
