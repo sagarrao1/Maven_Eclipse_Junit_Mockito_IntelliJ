@@ -33,7 +33,7 @@ public class AccountClosingService {
         if (accountHolderAge.getYears() < RETIREMENT_AGE) {
             return new AccountClosingResponse(CLOSING_DENIED, LocalDateTime.now(clock));
         } else {
-            final BackgroundCheckResults backgroundCheckResults = backgroundCheckService.confirm(
+              BackgroundCheckResults backgroundCheckResults = backgroundCheckService.confirm(
                     account.getFistName(),
                     account.getLastName(),
                     account.getTaxId(),

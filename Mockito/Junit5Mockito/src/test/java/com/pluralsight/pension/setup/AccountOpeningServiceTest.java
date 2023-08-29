@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -171,6 +172,57 @@ class AccountOpeningServiceTest {
 				() -> openingService.openAccount(FIRST_NAME, LAST_NAME, TAX_ID, DOB));
 	}
 	
+	
+	
+//	BDD STYLE test case	
+	
+	@Test
+	public void testShouldOpenAccountBDD_Style() throws IOException {	
+		
+		 BackgroundCheckResults backgroundCheckResults = new BackgroundCheckResults("something_not_unacceptable", 1000);
+		 BDDMockito.given(backgroundCheckService.confirm(FIRST_NAME, LAST_NAME,TAX_ID, DOB))
+		 .willReturn(backgroundCheckResults);	
+		 
+		 
+		 BDDMockito.given(referenceIdsManager.obtainId(eq(FIRST_NAME), anyString(), eq(LAST_NAME), eq(TAX_ID), eq(DOB)))
+		 .willReturn(ACCOUNT_ID);
+//		 when(referenceIdsManager.obtainId(any(), any(), any(), any())).thenReturn("valid");
+		 
+		AccountOpeningStatus accountOpeningStatus = openingService.openAccount(FIRST_NAME, LAST_NAME,TAX_ID, DOB);
+		assertEquals(AccountOpeningStatus.OPENED, accountOpeningStatus);	
+		
+//		verify(accountRepository, atLeastOnce()).save(ACCOUNT_ID,FIRST_NAME, LAST_NAME,TAX_ID, DOB, backgroundCheckResults);
+		
+//		ArgumentCaptor example to capture values from from method arguments
+//		when we use captor matcher, we need to use all other aruments ar matcher, for that reason we use eq()
+//		Argument captor will used in verify method
+		ArgumentCaptor<BackgroundCheckResults> backgroundResultCaptor = 
+										ArgumentCaptor.forClass(BackgroundCheckResults.class);	
+		
+		BDDMockito.then(accountRepository).
+				should().save(eq(ACCOUNT_ID),eq(FIRST_NAME), eq(LAST_NAME),eq(TAX_ID), eq(DOB),backgroundResultCaptor.capture());
+		
+		System.out.println(backgroundResultCaptor.getValue().getRiskProfile() + "\n" +
+						   backgroundResultCaptor.getValue().getUpperAccountLimit() );
+		
+		assertEquals(backgroundCheckResults.getRiskProfile(), backgroundResultCaptor.getValue().getRiskProfile() );
+		assertEquals(backgroundCheckResults.getUpperAccountLimit(), backgroundResultCaptor.getValue().getUpperAccountLimit() );
+//		ArgumentCaptor end
+		
+		BDDMockito.then(eventPublisher).should().notify(ACCOUNT_ID);
+		
+//		we can use argument matchers in verify also when we can pass anything
+		verify(eventPublisher, atLeastOnce()).notify(anyString());
+		
+		
+//		stub and mock are Same we use backgroundCheckService as stub above, so we should say ignore stubs		
+		verifyNoMoreInteractions( ignoreStubs( backgroundCheckService, referenceIdsManager) );		
+		verifyNoMoreInteractions( accountRepository, eventPublisher );
+		
+//		BDDMockito.then(accountRepository).shouldHaveNoInteractions();
+//		BDDMockito.then(eventPublisher).shouldHaveNoInteractions();
+		
+	}	
 	
 	
 	
