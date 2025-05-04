@@ -1,3 +1,47 @@
+
+IntelliJ shortcuts:
+
+ALT + 1 -> project tool window hide /unhide
+Scratch files -> used to keep notes or temporary code that u want to use later
+Double SHFT  -> search everywhere
+CTRL + N  --> search with class name / CTRL + SFT + T in eclipse
+CTRL + SFT + N  --> search for non class files like README.MD
+CTRL + E  --> Recent files that opened
+CTRL + B  --> Open target type means it opens implementation of class/ Methods
+		   This can be used for methods as well
+CTRL + SFT + I  --> Method definition in popup window
+CTRL + F12  -- > to show methods of class (CTRL + Fn + F12 )
+ALT + F1  ->  project/package view
+ALT + -> right arrow)     -->  cycle through open tabs
+CTRL + H   --> hierarchy class window like open implementations of interface
+CTRL + Y   --> delete line
+ALT + insert  --> Generate constructors
+ALT + insert  --> getters and setters
+CTRL + ALT + T  -- > to open surround with menu for try catch block or others
+SFT + ESC  -> hide active window
+
+Sout  -> println shortcut
+Psvm --> public static void main
+ALT + ENT --> show intention actions like if you do on interface , it will show you create implementation options
+
+CTRL + W  -> to select function and move up or down (CTRL +SHFT + UP)
+CTRL + `   --> quick switch list (ex: presentation mode/ change color scheme)
+CTRL + P   --> function parameter info key
+CTRL + SPACE -> function smart completion
+
+CTRL + SFT +   UP --> move line to up /down
+CTRL + SFT +  ENTER  --> smart complete like {} 
+CTRL + SFT +  ENTER  --> smart complete like adding ; at end
+CTRL + ALT+  L   --> format currently opened file
+
+ALT + ENTR  --> for next action
+
+Iter   ->  foreach loop 
+CTRL + J  -->  opens the list of live templates within your code context. Then type 'itin like 
+Ctrl+Alt+O  -->  shortcut for removing unused imports
+
+
+
 Eclipse shortcuts
 
 Crtl +1 for quickfix
