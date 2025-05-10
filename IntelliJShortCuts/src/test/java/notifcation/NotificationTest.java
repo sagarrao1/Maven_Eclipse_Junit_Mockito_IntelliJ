@@ -1,11 +1,9 @@
 package notifcation;
 
+import kotlin.NotificationKotlin;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.time.ZonedDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,7 +38,7 @@ class NotificationTest {
 
     @Test
     void testNotificationMessage(){
-        Notification noti = new Notification("Test message" , null);
+        kotlin.NotificationKotlin noti = new NotificationKotlin("Test message" , null);
 
         assertEquals(noti.getMessage(), "Test message" );
 

@@ -2,6 +2,29 @@
 IntelliJ shortcuts:
 
 ALT + 1 -> project tool window hide /unhide
+CTRL + SFT + F --> find in files
+CTRL + ALT+ H --> highlight method and know where it getting used (call hierarchy)
+CTRL + ALT+ V --> highlight text to extract new variable;
+SFT + F6  --> refactor rename variable
+CTRL + ALT+ N --> inline message in multiple lines
+CTRL + ALT+ P --> parameter to method message in multiple lines
+ALT + Insert  --> Generate getters and setters, constructor ,test, toString()
+CTRL + SFT + T --> create /open test class for opened java class
+CTRL + F12 --> to see list of test methods in popup menu
+
+CTRL + SFT + F10 --> ctrl + A Run tests in test class
+CTRL + F5 --> rerun failed test case
+
+Debug shortcut keys once you set break points 
+
+F8  --> Step over
+F8  --> step into
+SHFT + F8 --> Step out
+CTRL + F8  --> to set line breakpoint
+
+
+------------------------------
+ALT + 1 -> project tool window hide /unhide
 
 Scratch files -> used to keep notes or temporary code that u want to use later
 Double SHFT  -> search everywhere
